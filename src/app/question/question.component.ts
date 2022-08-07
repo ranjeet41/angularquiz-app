@@ -15,6 +15,7 @@ export class QuestionComponent implements OnInit {
   counter :number= 60;
   correctAnswar: number = 0;
   inCorrectAnswar: number = 0;
+  selectdOption:boolean = true;
   interval$: any;
   progress: string = '0';
   isQuizCompleted :boolean = false;
@@ -42,6 +43,7 @@ export class QuestionComponent implements OnInit {
   // }
   nextQuquestion() {
     this.currentQuestion++;
+    this.resetCounter()
   }
   previousQuestion() {
     this.currentQuestion--;
@@ -69,7 +71,10 @@ export class QuestionComponent implements OnInit {
         this.resetCounter();
         this.getprogresspercent();
       })
-      this.points -= 10;
+      if(this.points>0){
+        this.points -= 10;
+      }
+      
     }
   }
   startCounter() {
